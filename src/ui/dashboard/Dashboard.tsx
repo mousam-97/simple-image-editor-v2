@@ -24,6 +24,5 @@ type Props = { children: React.ReactNode };
 
 export default function Dashboard(props: Props) {
   const { children } = props;
-  console.log('children', children)
   return <div className={styles["dashboard"]}>{children}</div>;
 }

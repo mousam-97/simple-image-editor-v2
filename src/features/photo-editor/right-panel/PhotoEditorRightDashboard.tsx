@@ -11,7 +11,7 @@ type Props = {};
 export default function PhotoEditorRightDashboard({}: Props) {
   return (
     <DashBoardRightPanel>
-      <div style={{ width: "80%" }}>
+      <div style={{ width: "90%" }}>
         <Row columnDirection>
           <Row spaceBetween vCenter>
             <Text boldness={TEXT_BOLDNESS.BOLD}>Filters</Text>

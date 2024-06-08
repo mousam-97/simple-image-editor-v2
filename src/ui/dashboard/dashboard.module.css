@@ -16,3 +16,15 @@
   background-color: rgb(231, 229, 229);
   padding: 4%;
 }
+
+@media (max-width: 600px) {
+  .dashboard {
+    flex-direction: column;
+  }
+  .dashboard__left-panel {
+    width: initial;
+  }
+  .dashboard__right-panel {
+    width: initial;
+  }
+}
