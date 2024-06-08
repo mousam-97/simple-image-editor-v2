@@ -1,0 +1,12 @@
+.text {
+  font-size: 1.5rem;
+}
+
+.text--boldness-normal {
+}
+.text--boldness-bold {
+  font-weight: bolder;
+}
+.text--boldness-semi-bold {
+  font-weight: bold;
+}

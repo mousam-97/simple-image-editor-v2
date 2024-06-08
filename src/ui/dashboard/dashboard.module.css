@@ -1,0 +1,18 @@
+.dashboard {
+  position: relative;
+  height: 100vh;
+  display: flex;
+}
+
+.dashboard__left-panel {
+  width: 50%;
+  height: 100%;
+  padding: 4%;
+}
+
+.dashboard__right-panel {
+  width: 50%;
+  height: 100%;
+  background-color: rgb(231, 229, 229);
+  padding: 4%;
+}

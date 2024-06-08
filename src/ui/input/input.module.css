@@ -1,0 +1,25 @@
+.input {
+  border-radius: 10px;
+  font-size: 1.2rem;
+  padding: 0.3em;
+  border: 0.5px solid rgba(0, 0, 0, 0.6);
+}
+
+.range-input {
+  width: 250px;
+}
+
+.range-input__input {
+  width: 100%;
+}
+
+.range-input__value {
+  background-color: white;
+  padding: 0.1em 0.7em;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+}
+
+.range-input__input {
+  cursor: pointer;
+}

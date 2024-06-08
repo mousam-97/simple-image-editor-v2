@@ -1,0 +1,16 @@
+.button {
+  display: inline-block;
+  padding: 0.6em;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.button--style-primary {
+  background-color: rgb(71, 71, 249);
+  color: white;
+}
+
+.button--style-secondary {
+  background-color: rgb(214, 213, 211);
+}
