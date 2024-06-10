@@ -79,8 +79,14 @@ export const photoEditorSlice = createSlice({
       const { currentImageId } = state;
 
       const currentImageData = state.entities[currentImageId];
-      // @ts-ignore
       currentImageData.filters[name] = value;
+    },
+
+    resetCurrentImageFilter: (state) => {
+      const { currentImageId } = state;
+
+      const currentImageData = state.entities[currentImageId];
+      currentImageData.filters = getDefaultPhotoEditorFilterValues();
     },
 
     updateCurrentImageName: (state, action: PayloadAction<string>) => {
@@ -113,8 +119,12 @@ export const photoEditorSlice = createSlice({
   },
 });
 
-export const { setCurrentImage, updateCurrentImageFilter, updateCurrentImageName } =
-  photoEditorSlice.actions;
+export const {
+  setCurrentImage,
+  updateCurrentImageFilter,
+  updateCurrentImageName,
+  resetCurrentImageFilter,
+} = photoEditorSlice.actions;
 
 const photoEditorSelector = (state: RootState) => state.photoEditor;
 

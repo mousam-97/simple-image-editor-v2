@@ -6,6 +6,7 @@ import { RangeInput } from "../../../ui/input/Input";
 import Text, { TEXT_BOLDNESS } from "../../../ui/text/Text";
 import {
   currentImageDataSelector,
+  resetCurrentImageFilter,
   updateCurrentImageFilter,
 } from "../PhotoEditorSlice";
 import {
@@ -30,13 +31,17 @@ export default function PhotoEditorRightDashboard({}: Props) {
     dispatch(updateCurrentImageFilter({ name, value }));
   }
 
+  function handleResetFilters() {
+    dispatch(resetCurrentImageFilter());
+  }
+
   return (
     <DashBoardRightPanel>
       <div style={{ width: "90%" }}>
         <Row columnDirection>
           <Row spaceBetween vCenter>
             <Text boldness={TEXT_BOLDNESS.BOLD}>Filters</Text>
-            <Button onClick={() => console.log("reset")}>Reset</Button>
+            <Button onClick={handleResetFilters}>Reset</Button>
           </Row>
           <Space vertical size={26} />
           {filters && (
