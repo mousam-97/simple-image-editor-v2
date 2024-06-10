@@ -53,7 +53,7 @@ export function Space(props: SpaceProps) {
   const { children, size = 4, vertical } = props;
 
   if (children) {
-    <div className={styles[`space__around--size-${size}`]}>{children}</div>;
+    return <div className={styles[`space__around--size-${size}`]}>{children}</div>;
   }
 
   const classes = classNames(styles.space, {

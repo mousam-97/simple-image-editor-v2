@@ -5,6 +5,7 @@ import classNames from "classnames";
 export enum BUTTON_STYLE {
   PRIMARY = "primary",
   SECONDARY = "primary",
+  RESET = "reset",
 }
 
 type Props = {

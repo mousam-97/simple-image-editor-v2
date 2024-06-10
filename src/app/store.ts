@@ -1,9 +1,11 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import counterReducer from "../features/counter/counterSlice";
+import photoEditorReducer from "../features/photo-editor/PhotoEditorSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    photoEditor: photoEditorReducer,
   },
 });
 
