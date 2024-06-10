@@ -7,6 +7,7 @@ import Input from "../../../ui/input/Input";
 import {
   currentImageDataSelector,
   fetchRandomImageFromServer,
+  updateCurrentImageName,
 } from "../PhotoEditorSlice";
 import { getCSSFilterStringFromFiltersData } from "../photoEditorService";
 import PhotoEditorSavedImages from "./saved-images/PhotoEditorSavedImages";
@@ -21,6 +22,11 @@ export default function PhotoEditorLeftDashboard({}: Props) {
 
   const filterString = getCSSFilterStringFromFiltersData(filters);
 
+  function handleNameChange(e) {
+    const value = e.target.value;
+    dispatch(updateCurrentImageName(value));
+  }
+
   return (
     <DashBoardLeftPanel>
       <Row columnDirection vCenter center fullHeight>
@@ -30,6 +36,7 @@ export default function PhotoEditorLeftDashboard({}: Props) {
             type="text"
             placeHolder="Untitled image"
             value={name || ""}
+            onChange={handleNameChange}
           />
           <Space size={16} />
           <Button onClick={() => dispatch(fetchRandomImageFromServer())}>

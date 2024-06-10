@@ -57,8 +57,6 @@ export default function PhotoEditorSavedImages({}: Props) {
     (id) => id !== currentImageId
   );
 
-  console.log("savedImages", savedImages);
-
   return (
     <Row wrap spaceAround>
       {savedImages.map((imageId) => (
