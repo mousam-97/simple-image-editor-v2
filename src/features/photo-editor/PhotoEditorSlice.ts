@@ -36,25 +36,44 @@ const initialState: PhotoEditorState = {
   error: null,
 };
 
+// .then way
+// export const fetchRandomImageFromServer = createAsyncThunk(
+//   "photo_editor/fetch_image",
+//   (_, thunkAPI) => {
+//     const { dispatch } = thunkAPI;
+
+//     return fetchRandomImage()
+//       .then((blobImage) => {
+//         const imageUrl = getImageUrlFromBlob(blobImage);
+//         const id = uuidv4();
+//         const data: PhotoEditorImageType = {
+//           id,
+//           imageUrl,
+//           name: "Untitled image",
+//           filters: getDefaultPhotoEditorFilterValues(),
+//         };
+
+//         return data;
+//       })
+//       .catch((e) => Promise.reject(new Error('something went wrong')));
+//   }
+// );
+
+// using async await
 export const fetchRandomImageFromServer = createAsyncThunk(
   "photo_editor/fetch_image",
-  (_, thunkAPI) => {
-    const { dispatch } = thunkAPI;
+  async (_, thunkAPI) => {
+    const response = await fetchRandomImage();
+    const imageUrl = getImageUrlFromBlob(response);
+    const id = uuidv4();
+    const data: PhotoEditorImageType = {
+      id,
+      imageUrl,
+      name: "Untitled image",
+      filters: getDefaultPhotoEditorFilterValues(),
+    };
 
-    return fetchRandomImage()
-      .then((blobImage) => {
-        const imageUrl = getImageUrlFromBlob(blobImage);
-        const id = uuidv4();
-        const data: PhotoEditorImageType = {
-          id,
-          imageUrl,
-          name: "Untitled image",
-          filters: getDefaultPhotoEditorFilterValues(),
-        };
-
-        return data;
-      })
-      .catch((e) => e);
+    return data;
   }
 );
 
@@ -119,13 +138,12 @@ export const photoEditorSlice = createSlice({
           state.status = "idle";
         }
       )
-      .addCase(
-        fetchRandomImageFromServer.rejected,
-        (state, action: PayloadAction<Error | any>) => {
-          state.error = action.payload;
-          state.status = "failed";
-        }
-      );
+      .addCase(fetchRandomImageFromServer.rejected, (state, action) => {
+        const errorData = action.error;
+        // @ts-ignore
+        state.error = errorData;
+        state.status = "failed";
+      });
   },
 });
 
@@ -157,5 +175,15 @@ export const currentImageDataSelector = createSelector(
 
 export const imageDataByIdSelector = (id: string) =>
   createSelector(allImagesSelector, (images) => images[id]);
+
+export const isImageEditorImageLoadingSelector = createSelector(
+  photoEditorSelector,
+  (state) => state.status === "loading"
+);
+
+export const imageEditorErrorSelector = createSelector(
+  photoEditorSelector,
+  (state) => (state.status === "failed" ? state.error : undefined)
+);
 
 export default photoEditorSlice.reducer;

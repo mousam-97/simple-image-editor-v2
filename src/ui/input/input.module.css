@@ -16,8 +16,10 @@
 .range-input__value {
   background-color: white;
   padding: 0.1em 0.7em;
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  border: 0.6px solid rgb(114, 113, 113);
   border-radius: 10px;
+  min-width: 60px;
+  text-align: center;
 }
 
 .range-input__input {

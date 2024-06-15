@@ -1,0 +1,32 @@
+.loading-spinner {
+  border: 5px solid #fff;
+  border-bottom-color: #6b39f3;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner--size-sm {
+  width: 25px;
+  height: 25px;
+}
+
+.loading-spinner--size-md {
+  width: 48px;
+  height: 48px;
+}
+
+.loading-spinner--size-lg {
+  width: 68px;
+  height: 68px;
+}
