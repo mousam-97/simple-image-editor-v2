@@ -14,18 +14,27 @@ export default function DragAndDropContainer(props: Props) {
   const containerRef = useRef(null);
   const elementRef = useRef(null);
 
-  const handleDragStart = (e) => {
+  /*calculates the offset between the mouse position and the top-left corner of the element. 
+  This offset is saved in the dataTransfer object to be used later. */
+  function handleDragStart(e) {
     const element = e.target;
     const rect = element.getBoundingClientRect();
     e.dataTransfer.setData("offsetX", e.clientX - rect.left);
     e.dataTransfer.setData("offsetY", e.clientY - rect.top);
-  };
+  }
 
-  const handleDragOver = (e) => {
+  //  prevents the default behavior to allow dropping.
+  function handleDragOver(e) {
     e.preventDefault();
-  };
+  }
 
-  const handleDrop = (e) => {
+  /* 
+    calculates the new position of the element based on the mouse position and the saved offsets
+    relative to the container. It then updates the position state to move the element.
+    It also ensures that the element stays within the boundaries of the container using Math.max 
+    and Math.min functions.
+  */
+  function handleDrop(e) {
     e.preventDefault();
     const offsetX = e.dataTransfer.getData("offsetX");
     const offsetY = e.dataTransfer.getData("offsetY");
@@ -50,7 +59,7 @@ export default function DragAndDropContainer(props: Props) {
     };
 
     onChange(newPosition);
-  };
+  }
 
   return (
     <div
