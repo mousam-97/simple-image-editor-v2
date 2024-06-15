@@ -11,13 +11,14 @@ import { getImageUrlFromBlob } from "../../utils/imageUtils";
 import {
   getDefaultPhotoEditorFilterValues,
   PhotoEditorFilterType,
+  PhotoEditorWatermarkType,
 } from "./photoEditorService";
 
 type PhotoEditorImageType = {
   id: string;
   imageUrl: string;
   name: string;
-  watermark: string;
+  watermark?: PhotoEditorWatermarkType;
   filters: PhotoEditorFilterType;
 };
 
@@ -48,7 +49,6 @@ export const fetchRandomImageFromServer = createAsyncThunk(
           id,
           imageUrl,
           name: "Untitled image",
-          watermark: "",
           filters: getDefaultPhotoEditorFilterValues(),
         };
 
@@ -93,6 +93,16 @@ export const photoEditorSlice = createSlice({
       const currentImageId = state.currentImageId;
       state.entities[currentImageId].name = action.payload;
     },
+
+    updateCurrentWatermark: (
+      state,
+      action: PayloadAction<PhotoEditorWatermarkType>
+    ) => {
+      const currentImageId = state.currentImageId;
+      const currentImageData = state.entities[currentImageId];
+
+      currentImageData.watermark = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -124,6 +134,7 @@ export const {
   updateCurrentImageFilter,
   updateCurrentImageName,
   resetCurrentImageFilter,
+  updateCurrentWatermark,
 } = photoEditorSlice.actions;
 
 const photoEditorSelector = (state: RootState) => state.photoEditor;

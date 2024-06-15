@@ -1,7 +1,7 @@
 .button {
   display: inline-block;
-  padding: 0.6em;
-  border: 1px solid rgba(0, 0, 0, 0.7);
+  padding: 0.7em;
+  border: 0.7px solid rgb(180, 173, 173);
   border-radius: 12px;
   cursor: pointer;
 }

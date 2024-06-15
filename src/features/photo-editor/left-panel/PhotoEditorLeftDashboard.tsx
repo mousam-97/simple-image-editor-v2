@@ -4,6 +4,7 @@ import { DashBoardLeftPanel } from "../../../ui/dashboard/Dashboard";
 import { Row, Space } from "../../../ui/grid/Grid";
 import Image from "../../../ui/image/Image";
 import Input from "../../../ui/input/Input";
+import Text from "../../../ui/text/Text";
 import {
   currentImageDataSelector,
   fetchRandomImageFromServer,
@@ -19,6 +20,8 @@ export default function PhotoEditorLeftDashboard({}: Props) {
   const currentImageData = useAppSelector(currentImageDataSelector);
 
   const { imageUrl, name, watermark, filters } = currentImageData || {};
+  const { content: watermarkText, position: watermarkPosition } =
+    watermark || {};
 
   const filterString = getCSSFilterStringFromFiltersData(filters);
 
@@ -44,17 +47,32 @@ export default function PhotoEditorLeftDashboard({}: Props) {
           </Button>
         </Row>
         <Space size={16} vertical />
-        <Image
-          src={imageUrl}
-          alt="editor-photo"
-          cssStyles={{
-            width: 400,
-            height: 400,
-            borderRadius: "10px",
-            objectFit: "contain",
-            filter: filterString,
-          }}
-        />
+        <div style={{ position: "relative" }}>
+          <Image
+            src={imageUrl}
+            alt="editor-photo"
+            cssStyles={{
+              maxWidth: "100%",
+              height: 'auto',
+              borderRadius: "10px",
+              objectFit: "contain",
+              filter: filterString,
+            }}
+          />
+          {watermarkText && (
+            <Text
+              cssStyle={{
+                position: "absolute",
+                color: "white",
+                border: "1px solid gray",
+                cursor: 'grab',
+                ...watermarkPosition,
+              }}
+            >
+              {watermarkText}
+            </Text>
+          )}
+        </div>
         <Space vertical size={16} />
         <PhotoEditorSavedImages />
       </Row>

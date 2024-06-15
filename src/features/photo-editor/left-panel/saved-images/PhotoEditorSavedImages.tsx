@@ -37,8 +37,8 @@ function SavedImageItem(props: SavedImageItemProps) {
           cssStyles={{
             width: 100,
             height: 100,
-            borderRadius: "10px",
-            objectFit: "contain",
+            borderRadius: "15px",
+            objectFit: "cover",
             filter: filterString,
           }}
         />
@@ -58,7 +58,7 @@ export default function PhotoEditorSavedImages({}: Props) {
   );
 
   return (
-    <Row wrap spaceAround>
+    <Row wrap cssStyle={{ width: "100%", gap: "20px" }}>
       {savedImages.map((imageId) => (
         <SavedImageItem key={imageId} imageId={imageId} />
       ))}

@@ -7,6 +7,10 @@ export enum PHOTO_EDITOR_FILTER_ID {
 }
 
 export type PhotoEditorFilterType = Record<PHOTO_EDITOR_FILTER_ID, number>;
+export type PhotoEditorWatermarkType = {
+  content: string;
+  position: { top: number; left: number };
+};
 
 export const PHOTO_EDITOR_FILTER_DATA: Record<
   PHOTO_EDITOR_FILTER_ID,
