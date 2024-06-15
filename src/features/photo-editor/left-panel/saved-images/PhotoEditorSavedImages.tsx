@@ -58,9 +58,11 @@ export default function PhotoEditorSavedImages({}: Props) {
   );
 
   return (
-    <Row wrap cssStyle={{ width: "100%", gap: "20px" }}>
+    <Row cssStyle={{ width: "100%", gap: "20px", overflowX: "auto" }}>
       {savedImages.map((imageId) => (
-        <SavedImageItem key={imageId} imageId={imageId} />
+        <div style={{ flex: "0 0 auto" }} key={imageId}>
+          <SavedImageItem key={imageId} imageId={imageId} />
+        </div>
       ))}
     </Row>
   );

@@ -73,7 +73,7 @@ export default function PhotoEditorLeftDashboard({}: Props) {
             </Text>
           )}
         </div>
-        <Space vertical size={16} />
+        <Space vertical size={26} />
         <PhotoEditorSavedImages />
       </Row>
     </DashBoardLeftPanel>

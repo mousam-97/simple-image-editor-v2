@@ -1,9 +1,10 @@
 import React from "react";
 import Text, { TEXT_BOLDNESS } from "../../../../ui/text/Text";
 import Input from "../../../../ui/input/Input";
-import { Space } from "../../../../ui/grid/Grid";
+import { Row, Space } from "../../../../ui/grid/Grid";
 import { useAppDispatch } from "../../../../app/hooks";
 import { updateCurrentWatermark } from "../../PhotoEditorSlice";
+import Icon, { ICON_SIZE } from "../../../../ui/icon/Icon";
 
 type Props = {};
 
@@ -22,8 +23,13 @@ export default function PhotoEditorImageOverlay({}: Props) {
   }
 
   return (
-    <div>
-      <Text boldness={TEXT_BOLDNESS.BOLD}>Text</Text>
+    <>
+      <Row vCenter>
+        <Icon name="text_editor" size={ICON_SIZE.MD} />
+
+        <Space size={8} />
+        <Text boldness={TEXT_BOLDNESS.BOLD}>Text</Text>
+      </Row>
       <Space vertical size={16} />
       <Text cssStyle={{ fontSize: "1rem" }} boldness={TEXT_BOLDNESS.SEMI_BOLD}>
         Content
@@ -34,6 +40,6 @@ export default function PhotoEditorImageOverlay({}: Props) {
         type="text"
         onChange={handleUpdateWatermark}
       />
-    </div>
+    </>
   );
 }

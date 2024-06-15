@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Button from "../../../ui/button/Button";
 import { DashBoardRightPanel } from "../../../ui/dashboard/Dashboard";
 import { Row, Space } from "../../../ui/grid/Grid";
+import Icon, { ICON_SIZE } from "../../../ui/icon/Icon";
 import { RangeInput } from "../../../ui/input/Input";
 import Text, { TEXT_BOLDNESS } from "../../../ui/text/Text";
 import {
@@ -40,7 +41,11 @@ export default function PhotoEditorRightDashboard({}: Props) {
       <div style={{ width: "90%" }}>
         <Row columnDirection>
           <Row spaceBetween vCenter>
-            <Text boldness={TEXT_BOLDNESS.BOLD}>Filters</Text>
+            <Row vCenter>
+              <Icon name="editor" size={ICON_SIZE.MD} />
+              <Space size={8} />
+              <Text boldness={TEXT_BOLDNESS.BOLD}>Filters</Text>
+            </Row>
             <Button onClick={handleResetFilters}>Reset</Button>
           </Row>
           <Space vertical size={26} />
