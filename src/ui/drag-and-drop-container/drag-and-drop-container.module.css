@@ -1,0 +1,13 @@
+.drag-and-drop-container__container {
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.drag-and-drop-container__drag-element {
+  position: absolute;
+  z-index: 100;
+  color: white;
+  border: 1px solid gray;
+  cursor: grab;
+}

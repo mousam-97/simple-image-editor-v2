@@ -1,6 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Button from "../../../ui/button/Button";
 import { DashBoardLeftPanel } from "../../../ui/dashboard/Dashboard";
+import DragAndDropContainer from "../../../ui/drag-and-drop-container/DragAndDropContainer";
 import { Row, Space } from "../../../ui/grid/Grid";
 import Image from "../../../ui/image/Image";
 import Input from "../../../ui/input/Input";
@@ -14,9 +15,9 @@ import {
   imageEditorErrorSelector,
   isImageEditorImageLoadingSelector,
   updateCurrentImageName,
+  updateCurrentWatermark,
 } from "../PhotoEditorSlice";
 import { getCSSFilterStringFromFiltersData } from "../photoEditorService";
-import PhotoEditorDragAndDropContainer from "./drag-and-drop-container/PhotoEditorDragAndDropContainer";
 import PhotoEditorSavedImages from "./saved-images/PhotoEditorSavedImages";
 
 type Props = {};
@@ -36,6 +37,18 @@ export default function PhotoEditorLeftDashboard({}: Props) {
   function handleNameChange(e) {
     const value = e.target.value;
     dispatch(updateCurrentImageName(value));
+  }
+
+  function handleWatermarkPositionChange(newPosition: {
+    top: number;
+    left: number;
+  }) {
+    dispatch(
+      updateCurrentWatermark({
+        content: watermarkText || "",
+        position: newPosition,
+      })
+    );
   }
 
   return (
@@ -76,7 +89,24 @@ export default function PhotoEditorLeftDashboard({}: Props) {
               );
             }
 
-            return <PhotoEditorDragAndDropContainer />;
+            return (
+              <DragAndDropContainer
+                dragElementPosition={watermarkPosition}
+                dragElement={<Text>{watermarkText}</Text>}
+                onChange={handleWatermarkPositionChange}
+              >
+                <Image
+                  src={imageUrl}
+                  alt="editor-photo"
+                  cssStyles={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: filterString,
+                  }}
+                />
+              </DragAndDropContainer>
+            );
           })()}
         </div>
         <Space vertical size={26} />
