@@ -4,7 +4,9 @@ import { DashBoardLeftPanel } from "../../../ui/dashboard/Dashboard";
 import { Row, Space } from "../../../ui/grid/Grid";
 import Image from "../../../ui/image/Image";
 import Input from "../../../ui/input/Input";
-import LoadingSpinner, { LOADING_SPINNER_SIZE } from "../../../ui/loading-spinner/LoadingSpinner";
+import LoadingSpinner, {
+  LOADING_SPINNER_SIZE,
+} from "../../../ui/loading-spinner/LoadingSpinner";
 import Text from "../../../ui/text/Text";
 import {
   currentImageDataSelector,
@@ -14,6 +16,7 @@ import {
   updateCurrentImageName,
 } from "../PhotoEditorSlice";
 import { getCSSFilterStringFromFiltersData } from "../photoEditorService";
+import PhotoEditorDragAndDropContainer from "./drag-and-drop-container/PhotoEditorDragAndDropContainer";
 import PhotoEditorSavedImages from "./saved-images/PhotoEditorSavedImages";
 
 type Props = {};
@@ -47,17 +50,17 @@ export default function PhotoEditorLeftDashboard({}: Props) {
             onChange={handleNameChange}
           />
           <Space size={16} />
-          <Button onClick={() => dispatch(fetchRandomImageFromServer())} isLoading = {isImageLoading}>
+          <Button
+            onClick={() => dispatch(fetchRandomImageFromServer())}
+            isLoading={isImageLoading}
+          >
             New
           </Button>
         </Row>
         <Space size={16} vertical />
         <div
           style={{
-            position: "relative",
-            width: "100%",
             height: "570px",
-            textAlign: "center",
           }}
         >
           {(() => {
@@ -66,36 +69,14 @@ export default function PhotoEditorLeftDashboard({}: Props) {
             }
 
             if (isImageLoading) {
-              return <Row center vCenter fullHeight><LoadingSpinner size={LOADING_SPINNER_SIZE.LG}/></Row>;
+              return (
+                <Row center vCenter fullHeight>
+                  <LoadingSpinner size={LOADING_SPINNER_SIZE.LG} />
+                </Row>
+              );
             }
 
-            return (
-              <>
-                <Image
-                  src={imageUrl}
-                  alt="editor-photo"
-                  cssStyles={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "contain",
-                    filter: filterString,
-                  }}
-                />
-                {watermarkText && (
-                  <Text
-                    cssStyle={{
-                      position: "absolute",
-                      color: "white",
-                      border: "1px solid gray",
-                      cursor: "grab",
-                      ...watermarkPosition,
-                    }}
-                  >
-                    {watermarkText}
-                  </Text>
-                )}
-              </>
-            );
+            return <PhotoEditorDragAndDropContainer />;
           })()}
         </div>
         <Space vertical size={26} />
