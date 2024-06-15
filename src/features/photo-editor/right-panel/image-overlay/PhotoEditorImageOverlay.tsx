@@ -2,14 +2,19 @@ import React from "react";
 import Text, { TEXT_BOLDNESS } from "../../../../ui/text/Text";
 import Input from "../../../../ui/input/Input";
 import { Row, Space } from "../../../../ui/grid/Grid";
-import { useAppDispatch } from "../../../../app/hooks";
-import { updateCurrentWatermark } from "../../PhotoEditorSlice";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+import {
+  currentImageDataSelector,
+  updateCurrentWatermark,
+} from "../../PhotoEditorSlice";
 import Icon, { ICON_SIZE } from "../../../../ui/icon/Icon";
 
 type Props = {};
 
 export default function PhotoEditorImageOverlay({}: Props) {
   const dispatch = useAppDispatch();
+  const currentImageData = useAppSelector(currentImageDataSelector);
+  const watermarkText = currentImageData?.watermark?.content;
 
   function handleUpdateWatermark(e) {
     const watermark = {
@@ -38,6 +43,7 @@ export default function PhotoEditorImageOverlay({}: Props) {
         name="image_overlay"
         placeHolder="Image overlay"
         type="text"
+        value={watermarkText}
         onChange={handleUpdateWatermark}
       />
     </>

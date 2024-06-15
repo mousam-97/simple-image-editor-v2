@@ -10,6 +10,7 @@ import { fetchRandomImage } from "../../service/ImageService";
 import { getImageUrlFromBlob } from "../../utils/imageUtils";
 import {
   getDefaultPhotoEditorFilterValues,
+  getDefaultPhotoEditorImageWatermark,
   PhotoEditorFilterType,
   PhotoEditorWatermarkType,
 } from "./photoEditorService";
@@ -71,6 +72,7 @@ export const fetchRandomImageFromServer = createAsyncThunk(
       imageUrl,
       name: "Untitled image",
       filters: getDefaultPhotoEditorFilterValues(),
+      watermark: getDefaultPhotoEditorImageWatermark(),
     };
 
     return data;

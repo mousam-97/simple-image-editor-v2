@@ -56,6 +56,16 @@ export function getDefaultPhotoEditorFilterValues() {
   };
 }
 
+export function getDefaultPhotoEditorImageWatermark(): PhotoEditorWatermarkType {
+  return {
+    content: "",
+    position: {
+      top: 0,
+      left: 0,
+    },
+  };
+}
+
 export function getCSSFilterStringFromFiltersData(
   filters: PhotoEditorFilterType
 ): string {
