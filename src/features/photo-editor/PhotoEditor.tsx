@@ -5,20 +5,19 @@ import PhotoEditorLeftDashboard from "./left-panel/PhotoEditorLeftDashboard";
 import PhotoEditorRightDashboard from "./right-panel/PhotoEditorRightDashboard";
 import { fetchRandomImageFromServer } from "./PhotoEditorSlice";
 
-type Props = {};
+export default function PhotoEditor() {
+	const dispatch = useAppDispatch();
 
-export default function PhotoEditor({}: Props) {
-  const dispatch = useAppDispatch();
+	useEffect(() => {
+		dispatch(fetchRandomImageFromServer());
+	}, [dispatch]);
 
-  useEffect(() => {
-    dispatch(fetchRandomImageFromServer());
-  }, []);
-  return (
-    <div>
-      <Dashboard>
-        <PhotoEditorLeftDashboard />
-        <PhotoEditorRightDashboard />
-      </Dashboard>
-    </div>
-  );
+	return (
+		<div>
+			<Dashboard>
+				<PhotoEditorLeftDashboard />
+				<PhotoEditorRightDashboard />
+			</Dashboard>
+		</div>
+	);
 }
