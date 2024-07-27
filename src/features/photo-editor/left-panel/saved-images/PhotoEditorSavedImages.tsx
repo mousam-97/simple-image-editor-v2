@@ -47,23 +47,20 @@ function SavedImageItem(props: SavedImageItemProps) {
   );
 }
 
-type Props = {};
 
-export default function PhotoEditorSavedImages({}: Props) {
-  const allImages = useAppSelector(allImagesSelector);
-  const currentImageId = useAppSelector(currentImageIdSelector);
+export default function PhotoEditorSavedImages() {
+	const allImages = useAppSelector(allImagesSelector);
+	const currentImageId = useAppSelector(currentImageIdSelector);
 
-  const savedImages = Object.keys(allImages).filter(
-    (id) => id !== currentImageId
-  );
+	const savedImages = Object.keys(allImages).filter((id) => id !== currentImageId);
 
-  return (
-    <Row cssStyle={{ width: "100%", gap: "20px", overflowX: "auto" }}>
-      {savedImages.map((imageId) => (
-        <div style={{ flex: "0 0 auto" }} key={imageId}>
-          <SavedImageItem key={imageId} imageId={imageId} />
-        </div>
-      ))}
-    </Row>
-  );
+	return (
+		<Row cssStyle={{ width: "100%", gap: "20px", overflowX: "auto" }}>
+			{savedImages.map((imageId) => (
+				<div style={{ flex: "0 0 auto" }} key={imageId}>
+					<SavedImageItem key={imageId} imageId={imageId} />
+				</div>
+			))}
+		</Row>
+	);
 }
